@@ -49,7 +49,11 @@ const closeBookModal = () => {
     overlay.classList.remove('active');
 }
 
-
+const createBookCard = (book) => {
+    const bookCard = document.createElement('div');
+    const title = document.createElement('p');
+    const author = document.createElement('p');
+}
 
 addBookBtn.onclick = openAddBookModal
 closeModalBtn.onclick = closeBookModal
