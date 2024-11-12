@@ -9,51 +9,59 @@
 <body>
     <header class="header">
         <div class="container">
-            <h1>THE LIBRARY</h1>
+            <h1>The Library</h1>
         </div>
     </header>
     <main class="main-container">
-        <button id="btn btn-add">Add Book</button>
+        <button class="btn btn-add" id="addBookBtn">+ Add book</button>
         <div class="books-grid" id="booksGrid"></div>
     </main>
-    <div id="form-modal">
-        <svg xmlns="http://www.w3.org/2000/svg" id="close-btn" viewBox="0 0 24 24">
-            <path d="M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2C6.47,2 2,6.47 2,12C2,17.53 6.47,22 12,22C17.53,22 22,17.53 22,12C22,6.47 17.53,2 12,2M14.59,8L12,10.59L9.41,8L8,9.41L10.59,12L8,14.59L9.41,16L12,13.41L14.59,16L16,14.59L13.41,12L16,9.41L14.59,8Z" />
-        </svg>
+    
+    <div class="modal" id="addBookModal">
         <form class="add-book-form" id="addBookForm">
-            <h2>Add New book</h2>
+            <h3>Add new book</h3>
             <input 
-                class="input"
-                type="text"
-                id="title"
+                class="input" 
+                id="title" 
+                type="text" 
                 placeholder="Title"
                 required
+                maxlength="100"
             />
-            <p class="error"></p>
-            <input
+            <input 
                 class="input"
-                type="text"
                 id="author"
+                type="text"
                 placeholder="Author"
                 required
+                maxlength="100"
             />
             <input
                 class="input"
-                type="number"
                 id="pages"
+                type="number"
                 placeholder="Pages"
                 required
+                max="10000"
             />
-            <div class="is-read">
-                <label for="is-read">Is it read?</label>
-                <input class="checkbox" type="checkbox" id="isRead" />
+            <div class="read-btn">
+                <label for="is-read">Did you read it?</label>
+                <input type="checkbox" class="checkbox" id="isRead">
             </div>
-            <button class="btn btn-light-green" type="submit">Submit</button>
+            <button class="btn" type="submit">Submit</button>
         </form>
     </div>
-    <div class="overlay"></div>
-    <footer class="footer"></footer>
-
+    <div class="overlay" id="overlay"></div>
+    <footer class="footer">
+        <p>
+            Copyright ©
+            <script>
+                document.write(new Date().getFullYear());
+            </script>
+            adome22
+        </p>
+    </footer>    
+    
     <script src="app.js"></script>
 </body>
 </html>

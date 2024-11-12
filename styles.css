@@ -101,6 +101,8 @@ input[type="number"] {
 }
 
 /* MAIN */
+
+
 .main-container {
     margin-top: var(--spacing-lg);
     text-align: center;
@@ -126,7 +128,7 @@ input[type="number"] {
     line-height: 1.2;
 }
 
-.buttons {
+.button-group {
     display: flex;
     flex-direction: column;
     gap: var(--spacing-lg);

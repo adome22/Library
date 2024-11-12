@@ -40,15 +40,15 @@ const library = new Library();
 
 // UI
 
-const bookModal = document.getElementById("form-modal");
-const addBookBtn = document.getElementById("btn-add");
-const closeModalBtn = document.getElementById("close-btn");
+const bookModal = document.getElementById("addBookModal");
+const addBookBtn = document.getElementById("addBookBtn");
 const addBookForm = document.getElementById("addBookForm");
-const bookGrid = document.getElementById("booksGrid");
+const booksGrid = document.getElementById("booksGrid");
 const overlay = document.querySelector(".overlay");
 
 
 const openAddBookModal = () => {
+    addBookForm.reset();
     bookModal.classList.add('active');
     overlay.classList.add('active');
 }
@@ -70,7 +70,7 @@ const updateBooksGrid = () => {
 }
 
 const resetBooksGrid = () => {
-    bookGrid.innerHTML = '';
+    booksGrid.innerHTML = '';
 }
 
 const createBookCard = (book) => {
@@ -91,30 +91,39 @@ const createBookCard = (book) => {
 
     title.textContent = `"${book.title}"`;
     author.textContent = book.author;
-    pages.textContent = `${book.pages} pages`
+    pages.textContent = `${book.pages} pages`;
     removeBtn.textContent = 'Remove';
 
+    if (book.isRead) {
+        readBtn.textContent = 'Read'
+        readBtn.classList.add('btn-light-green')
+    } else {
+        readBtn.textContent = 'Not read'
+        readBtn.classList.add('btn-light-red');
+    }
+    
     bookCard.appendChild(title);
     bookCard.appendChild(author);
     bookCard.appendChild(pages);
     buttons.appendChild(readBtn);
     buttons.appendChild(removeBtn);
     bookCard.appendChild(buttons);
-    bookGrid.appendChild(bookCard);
+    booksGrid.appendChild(bookCard);
+
 }
 
 const getBookFromInput = () => {
-    const title = document.getElementById('title').value;
-    const author = document.getElementById('author').value;
-    const pages = document.getElementById('pages').value;
-    const isRead = document.getElementById('isRead').checked;
-    return new Book(title, author, pages, isRead);
-}
+    const title = document.getElementById('title').value
+    const author = document.getElementById('author').value
+    const pages = document.getElementById('pages').value
+    const isRead = document.getElementById('isRead').checked
+    return new Book(title, author, pages, isRead)
+  }
 
 const addBook = (e) => {
     e.preventDefault();
     const newBook = getBookFromInput();
-
+    
     if (library.isInLibrary(newBook)) {
         errorMsg.textContent = 'Book already exists'
         errorMsg.classList.add('active');
@@ -149,11 +158,10 @@ const toggleRead = (e) => {
 }
 
 
-addBookBtn.onclick = openAddBookModal;
-closeModalBtn.onclick = closeBookModal;
-overlay.onclick = closeBookModal;
-addBookForm.onsubmit = addBook;
-window.onkeydown = handleKeyboardInput;
+addBookBtn.onclick = openAddBookModal
+overlay.onclick = closeBookModal
+addBookForm.onsubmit = addBook
+window.onkeydown = handleKeyboardInput
 
 // Local Storage
 
